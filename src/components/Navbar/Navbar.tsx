@@ -1,5 +1,6 @@
 import { Flex, Image } from "@chakra-ui/react";
 import { FC } from "react";
+import RightContent from "./RightContent.tsx/RightContent";
 import SearchInput from "./SearchInput";
 
 interface NavbarProps {}
@@ -12,6 +13,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
         <Image display={{ base: "none", md: "unset" }} src="/images/redditText.svg" height="46px" alt="text" />
       </Flex>
       <SearchInput />
+      <RightContent />
     </Flex>
   );
 };
