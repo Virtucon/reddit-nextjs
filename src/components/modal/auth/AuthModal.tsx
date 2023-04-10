@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { useRecoilState } from "recoil";
+import AuthInputs from "./AuthInputs";
 
 interface AuthModalProps {}
 
@@ -25,19 +26,33 @@ const AuthModal: FC<AuthModalProps> = ({}) => {
 
   return (
     <>
-      <Modal isOpen={modalState.open} onClose={handleClose}>
+      <Modal
+        isOpen={modalState.open}
+        onClose={handleClose}
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
+          <ModalHeader textAlign="center">
             {modalState.view === "login" && "Login"}
             {modalState.view === "signup" && "Sign Up"}
             {modalState.view === "resetPassword" && "Reset Password"}
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-            <Flex direction="column" align="center" justify="center" width="70%" border="1px solid red">
+          <ModalBody
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            pb={6}
+          >
+            <Flex
+              direction="column"
+              align="center"
+              justify="center"
+              width="70%"
+            >
               {/* <OAuthButtons /> */}
-              {/* <AuthInputs /> */}
+              <AuthInputs />
               {/* <ResetPassword /> */}
             </Flex>
           </ModalBody>
