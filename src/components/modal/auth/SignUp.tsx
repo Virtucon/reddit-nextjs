@@ -2,6 +2,9 @@ import { authModalState } from "@/atoms/authModalAtom";
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { useSetRecoilState } from "recoil";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase/clientApp";
+import { FIREBASE_ERRORS } from "../../../firebase/errors";
 
 interface SignUpProps {}
 
@@ -12,8 +15,20 @@ const SignUp: FC<SignUpProps> = ({}) => {
     password: "",
     confirmPassword: "",
   });
+  const [formError, setFormError] = useState("");
+  const [createUserWithEmailAndPassword, user, loading, userError] =
+    useCreateUserWithEmailAndPassword(auth);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (formError) setFormError("");
+    if (signUpForm.password !== signUpForm.confirmPassword) {
+      setFormError("Passwords do not match");
+      return;
+    }
+
+    createUserWithEmailAndPassword(signUpForm.email, signUpForm.password);
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -67,7 +82,7 @@ const SignUp: FC<SignUpProps> = ({}) => {
       />
       <Input
         required
-        name="cofirmPassword"
+        name="confirmPassword"
         placeholder="confirm password"
         type="password"
         mb={2}
@@ -87,12 +102,21 @@ const SignUp: FC<SignUpProps> = ({}) => {
         }}
         bg="gray.50"
       />
+      <Text
+        textAlign="center"
+        color="red"
+        fontSize="10pt"
+      >
+        {formError ||
+          FIREBASE_ERRORS[userError?.message as keyof typeof FIREBASE_ERRORS]}
+      </Text>
       <Button
         width="100%"
         height="36px"
         mb={2}
         mt={2}
         type="submit"
+        isLoading={loading}
       >
         Sign Up
       </Button>
