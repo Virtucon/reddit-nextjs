@@ -1,4 +1,4 @@
-import AuthModal from "@/components/modal/AuthModal";
+import AuthModal from "@/components/modal/auth/AuthModal";
 import { Flex } from "@chakra-ui/react";
 import { FC } from "react";
 import AuthButtons from "./AuthButtons";
