@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/clientApp";
+import { FIREBASE_ERRORS } from "../../../firebase/errors";
 
 interface SignUpProps {}
 
@@ -101,15 +102,14 @@ const SignUp: FC<SignUpProps> = ({}) => {
         }}
         bg="gray.50"
       />
-      {formError && (
-        <Text
-          textAlign="center"
-          color="red"
-          fontSize="10pt"
-        >
-          {formError}
-        </Text>
-      )}
+      <Text
+        textAlign="center"
+        color="red"
+        fontSize="10pt"
+      >
+        {formError ||
+          FIREBASE_ERRORS[userError?.message as keyof typeof FIREBASE_ERRORS]}
+      </Text>
       <Button
         width="100%"
         height="36px"
