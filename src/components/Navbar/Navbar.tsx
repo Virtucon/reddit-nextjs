@@ -1,6 +1,6 @@
 import { Flex, Image } from "@chakra-ui/react";
 import { FC } from "react";
-import RightContent from "./RightContent.tsx/RightContent";
+import RightContent from "./rightContent/RightContent";
 import SearchInput from "./SearchInput";
 
 interface NavbarProps {}
