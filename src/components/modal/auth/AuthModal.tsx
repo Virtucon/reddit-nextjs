@@ -18,6 +18,7 @@ import { useRecoilState } from "recoil";
 import AuthInputs from "./AuthInputs";
 import OAuthButtons from "./OAuthButtons";
 import { auth } from "../../../firebase/clientApp";
+import ResetPassword from "./ResetPassword";
 
 interface AuthModalProps {}
 
@@ -62,15 +63,22 @@ const AuthModal: FC<AuthModalProps> = ({}) => {
               justify="center"
               width="70%"
             >
-              <OAuthButtons />
-              <Text
-                color="gray.500"
-                fontWeight={700}
-              >
-                OR
-              </Text>
-              <AuthInputs />
-              {/* <ResetPassword /> */}
+              {modalState.view === "login" || modalState.view === "signup" ? (
+                <>
+                  <OAuthButtons />
+                  <Text
+                    color="gray.500"
+                    fontWeight={700}
+                  >
+                    OR
+                  </Text>
+                  <AuthInputs />
+                </>
+              ) : (
+                <>
+                  <ResetPassword />
+                </>
+              )}
             </Flex>
           </ModalBody>
         </ModalContent>
