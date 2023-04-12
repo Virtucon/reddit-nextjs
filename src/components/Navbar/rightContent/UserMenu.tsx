@@ -7,6 +7,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Text,
 } from "@chakra-ui/react";
 import { signOut, User } from "firebase/auth";
 import { FC } from "react";
@@ -17,6 +18,7 @@ import { MdOutlineLogin } from "react-icons/md";
 import { auth } from "@/firebase/clientApp";
 import { authModalState } from "@/atoms/authModalAtom";
 import { useSetRecoilState } from "recoil";
+import { IoSparkles } from "react-icons/io5";
 
 interface UserMenuProps {
   user?: User | null;
@@ -39,9 +41,29 @@ const UserMenu: FC<UserMenuProps> = ({ user }) => {
               <>
                 <Icon
                   fontSize={24}
+                  mr={1}
                   color="gray.300"
                   as={FaRedditSquare}
                 />
+                <Flex
+                  direction="column"
+                  display={{ base: "none", lg: "flex" }}
+                  fontSize="8pt"
+                  align="flex-start"
+                  mr={8}
+                >
+                  <Text fontWeight={700}>
+                    {user?.displayName || user?.email?.split("@")[0]}
+                  </Text>
+                  <Flex>
+                    <Icon
+                      as={IoSparkles}
+                      color="brand.100"
+                      mr={1}
+                    />
+                    <Text color="gray.400">1 karma</Text>
+                  </Flex>
+                </Flex>
               </>
             ) : (
               <Icon
