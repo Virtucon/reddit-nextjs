@@ -4,6 +4,7 @@ import { FC } from "react";
 import { authModalState } from "@/atoms/authModalAtom";
 import { useSetRecoilState } from "recoil";
 import { TiHome } from "react-icons/ti";
+import Communities from "./Communities";
 
 const Directory: FC = () => {
   const setAuthModalState = useSetRecoilState(authModalState);
@@ -21,7 +22,7 @@ const Directory: FC = () => {
         <Flex
           align="center"
           justify="space-between"
-          width={{ base: "auto", lg: "200px"}}
+          width={{ base: "auto", lg: "200px" }}
         >
           <Flex align="center">
             <Icon
@@ -42,7 +43,7 @@ const Directory: FC = () => {
         </Flex>
       </MenuButton>
       <MenuList>
-        Communities
+        <Communities />
       </MenuList>
     </Menu>
   );
