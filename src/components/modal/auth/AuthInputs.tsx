@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
+
 interface AuthInputsProps {}
 
 const AuthInputs: FC<AuthInputsProps> = ({}) => {
