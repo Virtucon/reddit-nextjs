@@ -1,4 +1,5 @@
 import { Community } from "@/atoms/communitiesAtom";
+import Header from "@/components/Community/Header";
 import NotFound from "@/components/Community/NotFound";
 import { firestore } from "@/firebase/clientApp";
 import { doc, getDoc } from "firebase/firestore";
@@ -16,9 +17,9 @@ const CommunityPage: FC<CommunityPageProps> = ({ communityData }) => {
   }
 
   return (
-    <div>
-      <h1>{communityData.id}</h1>
-    </div>
+    <>
+      <Header communityData={communityData} />
+    </>
   );
 };
 
